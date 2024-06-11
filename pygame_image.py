@@ -16,6 +16,8 @@ def main():
     kk_img_rct = kk_img.get_rect() #こうかとんのrect抽出
     kk_img_rct.center = 300, 200 #rectの中心位置
     tmr = 0
+    x = 0
+    y = 0
 
     while True:
         for event in pg.event.get():
@@ -30,15 +32,17 @@ def main():
         #bg_img_rct = bg_img.get_rect()
         #bg_img_rct.right = 0, 0 #rectの中心位置
         key_get = pg.key.get_pressed()
-        kk_img_rct.move_ip((-1, 0))
         if key_get[pg.K_UP]:
-            kk_img_rct.move_ip((0, -1))
+            y = -1
         if key_get[pg.K_DOWN]:
-            kk_img_rct.move_ip((0, 1))
+            y = 1
         if key_get[pg.K_LEFT]:
-            kk_img_rct.move_ip((-1, 0))
+            x = -1
         if key_get[pg.K_RIGHT]:
-            kk_img_rct.move_ip((2, 0))
+            x = 1
+        kk_img_rct.move_ip((x, y))
+        x = -1
+        y = 0
 
         #kk_img_rct.center = [200 + bg_move, 300]
         screen.blit(kk_img, kk_img_rct)
