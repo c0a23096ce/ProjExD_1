@@ -21,22 +21,26 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         
-        bg_move = tmr % 3200
-        screen.blit(bg_img, [-bg_move, 0])
-        screen.blit(bg_img2, [-bg_move + 1600, 0])
-        screen.blit(bg_img, [-bg_move + 3200, 0])
+        bg_move = -(tmr % 3200)
+        #kk_move = tmr % 800
+        screen.blit(bg_img, [bg_move, 0])
+        screen.blit(bg_img2, [bg_move + 1600, 0])
+        screen.blit(bg_img, [bg_move + 3200, 0])
         #screen.blit(bg_img2, [-bg_move + 4800, 0])
         #bg_img_rct = bg_img.get_rect()
         #bg_img_rct.right = 0, 0 #rectの中心位置
         key_get = pg.key.get_pressed()
+        kk_img_rct.move_ip((-1, 0))
         if key_get[pg.K_UP]:
             kk_img_rct.move_ip((0, -1))
-        elif key_get[pg.K_DOWN]:
+        if key_get[pg.K_DOWN]:
             kk_img_rct.move_ip((0, 1))
-        elif key_get[pg.K_LEFT]:
+        if key_get[pg.K_LEFT]:
             kk_img_rct.move_ip((-1, 0))
-        elif key_get[pg.K_RIGHT]:
-            kk_img_rct.move_ip((1, 0))
+        if key_get[pg.K_RIGHT]:
+            kk_img_rct.move_ip((2, 0))
+
+        #kk_img_rct.center = [200 + bg_move, 300]
         screen.blit(kk_img, kk_img_rct)
         pg.display.update()
         tmr += 1     
